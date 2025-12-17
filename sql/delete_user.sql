@@ -1,0 +1,1 @@
+DROP USER IF EXISTS 'memory_of_war_db_user'@'%';
