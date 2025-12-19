@@ -1,44 +1,34 @@
 <?php
 
 /** @var yii\web\View $this */
+/** @var common\models\Province[] $provinces */
 
 use yii\helpers\Html;
 
-$this->title = '重大战役';
+$this->title = '重大战役 - 省份列表';
 $this->params['breadcrumbs'][] = $this->title;
-
-// 获取 battles 目录下的所有 HTML 文件
-$battlesDir = Yii::getAlias('@frontend/web/battles');
-$htmlFiles = [];
-if (is_dir($battlesDir)) {
-    $files = scandir($battlesDir);
-    foreach ($files as $file) {
-        if (pathinfo($file, PATHINFO_EXTENSION) === 'html') {
-            $htmlFiles[] = $file;
-        }
-    }
-}
-sort($htmlFiles);
 ?>
 
 <div class="battles-index">
     <h1><?= Html::encode($this->title) ?></h1>
     
     <div class="battles-list" style="margin: 20px 0;">
-        <p>选择一个地区查看相关战役信息：</p>
-        <ul class="list-group" style="display: flex; flex-wrap: wrap; gap: 10px;">
-            <?php foreach ($htmlFiles as $file): ?>
-                <?php 
-                    $filename = pathinfo($file, PATHINFO_FILENAME);
-                    // 跳过不需要的文件
-                    if (in_array($file, ['index.html', 'start.html', 'start_c_1.html', 'start_with_pages.html'])) {
-                        continue;
-                    }
-                ?>
-                <li class="list-group-item" style="flex: 0 0 auto;">
-                    <?= Html::a($filename, ['/battles/view', 'file' => $file], ['class' => 'btn btn-primary', 'target' => '_blank']) ?>
-                </li>
+        <p><?= Html::a('查看中国地图', ['/battles/index'], ['class' => 'btn btn-success', 'target' => '_blank']) ?></p>
+        
+        <p>选择一个省份查看相关战役信息：</p>
+        
+        <div class="row">
+            <?php foreach ($provinces as $province): ?>
+                <div class="col-md-3 col-sm-4 col-6 mb-3">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title"><?= Html::encode($province->name) ?></h5>
+                            <p class="card-text text-muted small"><?= Html::encode($province->description) ?></p>
+                            <?= Html::a('查看详情', ['/battles/province', 'id' => $province->id], ['class' => 'btn btn-primary btn-sm', 'target' => '_blank']) ?>
+                        </div>
+                    </div>
+                </div>
             <?php endforeach; ?>
-        </ul>
+        </div>
     </div>
 </div>
