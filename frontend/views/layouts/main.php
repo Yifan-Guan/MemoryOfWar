@@ -38,6 +38,7 @@ AppAsset::register($this);
         ['label' => '主页', 'url' => ['/site/index']],
         ['label' => '时间线', 'url' => ['/timeline']],
         ['label' => '团队', 'url' => ['/team']],
+        ['label' => '重大战役', 'url' => ['/battles/index']],
     ];
 
     echo Nav::widget([
