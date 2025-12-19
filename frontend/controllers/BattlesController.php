@@ -8,18 +8,17 @@ use Yii;
 
 class BattlesController extends Controller
 {
-    // 禁用 Yii 的 layout，让 HTML 文件直接访问
+    // 禁用布局，直接输出 Axure 生成的静态页面
     public $layout = false;
 
     public function actionIndex()
     {
-        // 直接显示中国地图
+        // 直接显示中国地图静态页面
         return $this->actionShowMap('中国地图.html');
     }
 
     public function actionShowMap($file = '中国地图.html')
     {
-        // 安全检查：防止目录遍历攻击
         $basename = basename($file);
         $filepath = Yii::getAlias('@frontend/web/battles/' . $basename);
         
@@ -33,7 +32,8 @@ class BattlesController extends Controller
 
     public function actionList()
     {
-        $this->layout = '@app/views/layouts/main'; // 使用正常的 layout
+        // 如果需要显示列表，可改回使用布局渲染 index 视图
+        $this->layout = '@app/views/layouts/main';
         return $this->render('index');
     }
 }

@@ -601,5 +601,40 @@
       </div>
     </div>
     <script src="resources/scripts/axure/ios.js"></script>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+      }
+      /* 基于设计尺寸 4560x3490，使用缩放适配视口 */
+      #base {
+        transform-origin: top left;
+        position: absolute;
+      }
+    </style>
+    <script>
+      (function() {
+        var designW = 4560;
+        var designH = 3490;
+        var base = document.getElementById('base');
+        if (!base) return;
+
+        function resize() {
+          var ww = window.innerWidth;
+          var wh = window.innerHeight;
+          var scale = Math.min(ww / designW, wh / designH);
+          var offsetX = Math.max(0, (ww - designW * scale) / 2);
+          var offsetY = Math.max(0, (wh - designH * scale) / 2);
+          base.style.transform = 'translate(' + offsetX + 'px, ' + offsetY + 'px) scale(' + scale + ')';
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+      })();
+    </script>
   </body>
 </html>
