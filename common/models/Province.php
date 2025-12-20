@@ -12,6 +12,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $name 省份名称
  * @property string $html_file 对应的HTML文件名
  * @property string|null $description 省份描述
+ * @property string|null $url 省份链接
  * @property int $order 排序
  * @property int $created_at
  * @property int $updated_at
@@ -46,7 +47,7 @@ class Province extends \yii\db\ActiveRecord
             [['description'], 'string'],
             [['order', 'created_at', 'updated_at'], 'integer'],
             [['name'], 'string', 'max' => 50],
-            [['html_file'], 'string', 'max' => 100],
+            [['html_file', 'url'], 'string', 'max' => 255],
         ];
     }
 
@@ -59,6 +60,7 @@ class Province extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => '省份名称',
             'html_file' => 'HTML文件',
+            'url' => '链接',
             'description' => '描述',
             'order' => '排序',
             'created_at' => '创建时间',
@@ -71,6 +73,10 @@ class Province extends \yii\db\ActiveRecord
      */
     public function getHtmlUrl()
     {
+        // 优先使用url字段，如果没有则使用html_file生成
+        if (!empty($this->url)) {
+            return $this->url;
+        }
         return '/battles/' . $this->html_file;
     }
 
