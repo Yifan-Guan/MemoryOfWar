@@ -39,7 +39,7 @@ AppAsset::register($this);
         ['label' => '时间线', 'url' => ['/timeline']],
         ['label' => '重大战役', 'url' => '/battles/中国地图.html'],
         ['label' => '团队', 'url' => ['/team']],
-
+        ['label' => '词云图', 'url' => ['/site/wordcloud']],
     ];
 
     echo Nav::widget([
