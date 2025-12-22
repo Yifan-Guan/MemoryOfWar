@@ -54,4 +54,12 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
+
+    /**
+     * Render wordcloud view exported under views/site/wordcloud.php
+     */
+    public function actionWordcloud()
+    {
+        return $this->render('wordcloud');
+    }
 }
