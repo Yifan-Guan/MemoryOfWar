@@ -1,6 +1,5 @@
 <?php
 
-<<<<<<< HEAD
 use yii\bootstrap5\Html;
 
 /** @var yii\web\View $this */
@@ -10,52 +9,31 @@ $this->title = 'Memory Of War';
 <div class="site-index">
 
     <?= Html::img('@web/background.png', ['class' => 'img-fluid mb-4']) ?>
-=======
-/** @var yii\web\View $this */
-
-$this->title = 'My Yii Application';
-?>
-<div class="site-index">
-    <div class="p-5 mb-4 bg-transparent rounded-3">
-        <div class="container-fluid py-5 text-center">
-            <h1 class="display-4">铭记历史 珍爱和平 开创未来</h1>
-            <p class="fs-5 fw-light">纪念中国人民抗日战争胜利80周年</p>
-        </div>
-    </div>
->>>>>>> herosearch
-
     <div class="body-content">
-
         <div class="row">
-<<<<<<< HEAD
-            <div class="col-lg-4 card">
-=======
-            <div class="col-lg-4">
->>>>>>> herosearch
-                <h2>抗战时间线</h2>
+            <div class="col-lg-5 card m-4">
+                <h2 class="m-2">时间线</h2>
 
-                <p>忆往昔峥嵘岁月稠，回顾抗战中那些生死攸关的时刻与指引中华民族走向
+                <p class="m-3">忆往昔峥嵘岁月稠，回顾抗战中那些生死攸关的时刻与指引中华民族走向
                     胜利的精神灯塔。</p>
 
             </div>
-<<<<<<< HEAD
-            <div class="col-lg-4 card">
-=======
-            <div class="col-lg-4">
->>>>>>> herosearch
-                <h2>......</h2>
+            <div class="col-lg-5 card m-4">
+                <h2 class="m-2">重大战役</h2>
 
-                <p>.......</p>
+                <p class="m-3">一寸山河一寸血，铭记中华大地上的每一场浴血奋战。</p>
 
             </div>
-<<<<<<< HEAD
-            <div class="col-lg-4 card">
-=======
-            <div class="col-lg-4">
->>>>>>> herosearch
-                <h2>关于我们</h2>
+            <div class="col-lg-5 card m-4">
+                <h2 class="m-2">词云图</h2>
 
-                <p></p>
+                <p class="m-3">字字泣血，诉说抗战岁月的点点滴滴。</p>
+
+            </div>
+            <div class="col-lg-5 card m-4">
+                <h2 class="m-2">英雄查询</h2>
+
+                <p class="m-3">今天的美好生活，离不开那些为国捐躯的英雄们。</p>
 
             </div>
         </div>

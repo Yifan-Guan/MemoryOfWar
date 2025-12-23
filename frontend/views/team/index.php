@@ -5,7 +5,7 @@ $this->title = 'Our Team';
 $teamInfo = [
     [
         'name' => '管一凡',
-        'work' => '设计实现时间线页面、团队页面',
+        'work' => '设计实现时间线页面、团队页面、主页',
         'files' => [
         'frontend/views/timeline/*', 
         'frontend/controllers/TimelineController.php',
@@ -34,8 +34,13 @@ $teamInfo = [
     ],
     [
         'name' => '李佳泽',
-        'work' => '',
-        'files' => [],
+        'work' => '设计实现英雄查询页面',
+        'files' => [
+        'frontend/views/hero/*',
+        'frontend/controllers/HeroController.php',
+        'frontend/models/Hero.php',
+        'frontend/web/hero/*',
+        ],
     ],
 ];
 ?>

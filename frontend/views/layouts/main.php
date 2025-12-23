@@ -31,24 +31,16 @@ AppAsset::register($this);
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-<<<<<<< HEAD
             'class' => 'navbar navbar-expand-md navbar-dark bg-danger fixed-top',
-=======
-            'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
->>>>>>> herosearch
         ],
     ]);
     $menuItems = [
         ['label' => '主页', 'url' => ['/site/index']],
         ['label' => '时间线', 'url' => ['/timeline']],
-<<<<<<< HEAD
         ['label' => '重大战役', 'url' => '/battles/中国地图.html'],
         ['label' => '词云图', 'url' => ['/site/wordcloud']],
-        ['label' => '团队', 'url' => ['/team']],
-=======
-        ['label' => '团队', 'url' => ['/team']],
         ['label' => '英雄查询', 'url' => ['/hero/index']],
->>>>>>> herosearch
+        ['label' => '团队', 'url' => ['/team']],
     ];
 
     echo Nav::widget([
