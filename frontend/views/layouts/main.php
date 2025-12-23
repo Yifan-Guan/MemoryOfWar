@@ -36,7 +36,7 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => '主页', 'url' => ['/site/index']],
-        ['label' => '时间线', 'url' => ['/timeline']],
+        ['label' => '时间线', 'url' => ['/timeline/index']],
         ['label' => '团队', 'url' => ['/team']],
     ];
 

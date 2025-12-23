@@ -32,14 +32,20 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
+        'user' => [
+            'identityClass' => 'common\models\User',
+            'enableAutoLogin' => true,
+            'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
+        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'timeline' => 'timeline/index',
+                'timeline/detail/<id:\d+>' => 'timeline/detail',
+                'timeline/all-events' => 'timeline/all-events',
             ],
         ],
-        */
     ],
     'params' => $params,
 ];
