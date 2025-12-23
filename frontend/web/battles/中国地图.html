@@ -668,26 +668,28 @@
           // 使用AJAX从数据库查询省份信息
           var xhr = new XMLHttpRequest();
           xhr.open('GET', '/index.php?r=battles/search-province&name=' + encodeURIComponent(input), true);
-          xhr.setRequestHeader('Content-Type', 'application/json');
           
           xhr.onload = function() {
             searchBtn.disabled = false;
             searchBtn.textContent = '搜索';
             
             if (xhr.status === 200) {
-              try {
-                var response = JSON.parse(xhr.responseText);
-                
-                if (response.success && response.data) {
-                  // 成功找到省份，跳转到对应URL
-                  window.location.href = response.data.url;
-                } else {
-                  // 未找到省份
-                  showMessage(response.message || '未找到该省份');
+              var ct = xhr.getResponseHeader('Content-Type') || '';
+              if (ct.indexOf('application/json') !== -1) {
+                try {
+                  var response = JSON.parse(xhr.responseText);
+                  if (response.success && response.data) {
+                    window.location.href = response.data.url;
+                  } else {
+                    showMessage(response.message || '未找到该省份');
+                  }
+                } catch (e) {
+                  showMessage('搜索出错，请稍后重试');
+                  console.error('解析响应失败:', e);
                 }
-              } catch (e) {
-                showMessage('搜索出错，请稍后重试');
-                console.error('解析响应失败:', e);
+              } else {
+                // 非 JSON 响应时走前端文件回退
+                fallbackToLocalFiles(input);
               }
             } else {
               showMessage('网络错误，请稍后重试');
@@ -701,6 +703,37 @@
           };
           
           xhr.send();
+
+          // 前端文件回退：检查 battles 目录是否存在对应文件并跳转
+          function fallbackToLocalFiles(name) {
+            var clean = name.replace(/(省|市|自治区|维吾尔|回族|壮族)/g, '');
+            var candidates = [
+              '/battles/' + name + '.html',
+              clean ? ('/battles/' + clean + '.html') : null
+            ].filter(Boolean);
+
+            // 依次 HEAD 探测
+            function headCheck(urls, idx) {
+              if (idx >= urls.length) {
+                showMessage('未找到该省份');
+                return;
+              }
+              var test = new XMLHttpRequest();
+              test.open('HEAD', urls[idx], true);
+              test.onload = function() {
+                if (test.status >= 200 && test.status < 300) {
+                  window.location.href = urls[idx];
+                } else {
+                  headCheck(urls, idx + 1);
+                }
+              };
+              test.onerror = function() {
+                headCheck(urls, idx + 1);
+              };
+              test.send();
+            }
+            headCheck(candidates, 0);
+          }
         }
 
         function showMessage(msg) {

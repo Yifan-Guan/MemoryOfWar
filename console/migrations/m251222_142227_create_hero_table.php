@@ -45,7 +45,7 @@ class m251222_142227_create_hero_table extends Migration
                     'yangjingyu.png' // 原为 png，已修改
                 ],
                 [
-                    2, 
+
                     '赵一曼', 
                     '1905-1936', 
                     '东北抗日联军 第三军政委', 
@@ -57,7 +57,7 @@ class m251222_142227_create_hero_table extends Migration
                     'zhaoyiman.png' // 原为 png，已修改
                 ],
                 [
-                    3, 
+
                     '张自忠', 
                     '1891-1940', 
                     '第33集团军总司令', 
@@ -69,7 +69,7 @@ class m251222_142227_create_hero_table extends Migration
                     'zhangzizhong.png' // 原为 png，已修改
                 ],
                 [
-                    4, 
+
                     '左权', 
                     '1905-1942', 
                     '八路军副总参谋长', 
@@ -81,7 +81,7 @@ class m251222_142227_create_hero_table extends Migration
                     'zuoquan.png' // 原为 png，已修改
                 ],
                 [
-                    5, 
+    
                     '叶挺', 
                     '1896-1946', 
                     '新四军军长', 
@@ -91,7 +91,7 @@ class m251222_142227_create_hero_table extends Migration
                     'yeting.jpg'
                 ],
                 [
-                    6, 
+          
                     '谢晋元', 
                     '1905-1941', 
                     '国民革命军第88师524团团长', 
@@ -101,7 +101,7 @@ class m251222_142227_create_hero_table extends Migration
                     'xiejinyuan.jpg'
                 ],
                 [
-                    7, 
+ 
                     '彭雪枫', 
                     '1907-1944', 
                     '新四军第四师师长', 
@@ -111,7 +111,7 @@ class m251222_142227_create_hero_table extends Migration
                     'pengxuefeng.jpg'
                 ],
                 [
-                    8, 
+    
                     '佟麟阁', 
                     '1892-1937', 
                     '第29军副军长', 
@@ -121,7 +121,7 @@ class m251222_142227_create_hero_table extends Migration
                     'tonglinge.jpg'
                 ],
                 [
-                    9, 
+     
                     '戴安澜', 
                     '1904-1942', 
                     '中国远征军第200师师长', 
@@ -131,7 +131,7 @@ class m251222_142227_create_hero_table extends Migration
                     'daianlan.jpg'
                 ],
                 [
-                    10, 
+      
                     '白求恩', 
                     '1890-1939', 
                     '加拿大共产党员 / 著名胸外科医生', 
@@ -141,7 +141,7 @@ class m251222_142227_create_hero_table extends Migration
                     'baiqiuen.jpg'
                 ],
                 [
-                    11, 
+       
                     '陈纳德', 
                     '1893-1958', 
                     '美国陆军航空队少将 / “飞虎队”指挥官', 
@@ -151,7 +151,7 @@ class m251222_142227_create_hero_table extends Migration
                     'chennade.jpg'
                 ],
                 [
-                    12, 
+         
                     '梅兰芳', 
                     '1894-1961', 
                     '京剧表演艺术大师', 
@@ -161,7 +161,7 @@ class m251222_142227_create_hero_table extends Migration
                     'meilanfang.jpg'
                 ],
                 [
-                    13, 
+       
                     '冼星海', 
                     '1905-1945', 
                     '人民音乐家 / 《黄河大合唱》作曲者', 
@@ -171,7 +171,7 @@ class m251222_142227_create_hero_table extends Migration
                     'xianxinghai.jpg'
                 ],
                 [
-                    14, 
+         
                     '郁达夫', 
                     '1896-1945', 
                     '著名作家 / 抗日救亡战士', 
@@ -181,7 +181,7 @@ class m251222_142227_create_hero_table extends Migration
                     'yudafu.jpg'
                 ],
                 [
-                    15, 
+    
                     '薛岳', 
                     '1896-1998', 
                     '第九战区代理司令长官', 
@@ -191,7 +191,7 @@ class m251222_142227_create_hero_table extends Migration
                     'xueyue.jpg'
                 ],
                 [
-                    16, 
+    
                     '孙立人', 
                     '1900-1990', 
                     '新编第38师师长', 
@@ -201,7 +201,7 @@ class m251222_142227_create_hero_table extends Migration
                     'sunliren.jpg'
                 ],
                 [
-                    17, 
+       
                     '高志航', 
                     '1907-1937', 
                     '空军第四大队大队长', 
@@ -211,7 +211,7 @@ class m251222_142227_create_hero_table extends Migration
                     'gaozhihang.jpg'
                 ],
                 [
-                    18, 
+       
                     '吉鸿昌', 
                     '1895-1934', 
                     '察哈尔民众抗日同盟军前敌总指挥', 
@@ -221,7 +221,7 @@ class m251222_142227_create_hero_table extends Migration
                     'jihongchang.jpg'
                 ],
                 [
-                    19, 
+         
                     '冷云', 
                     '1915-1938', 
                     '东北抗联妇女团指导员', 
@@ -231,7 +231,7 @@ class m251222_142227_create_hero_table extends Migration
                     'lengyun.jpg'
                 ],
                 [
-                    21, 
+       
                     '陈嘉庚', 
                     '1874-1961', 
                     '南洋华侨筹赈祖国难民总会主席', 
@@ -241,7 +241,7 @@ class m251222_142227_create_hero_table extends Migration
                     'chenjiageng.jpg'
                 ],
                 [
-                    22, 
+  
                     '王铭章', 
                     '1893-1938', 
                     '第122师师长', 
@@ -251,7 +251,7 @@ class m251222_142227_create_hero_table extends Migration
                     'wangmingzhang.jpg'
                 ],
                 [
-                    23, 
+
                     '聂耳', 
                     '1912-1935', 
                     '人民音乐家', 
@@ -261,7 +261,7 @@ class m251222_142227_create_hero_table extends Migration
                     'nieer.jpg'
                 ],
                 [
-                    24, 
+
                     '卢作孚', 
                     '1893-1952', 
                     '民生公司总经理', 

@@ -57,21 +57,32 @@ class BattlesController extends Controller
             ];
         }
         
+        // 如果数据库不可用，则直接走文件系统回退，避免抛出连接异常
+        $dbAvailable = false;
+        try {
+            Yii::$app->db->open();
+            $dbAvailable = Yii::$app->db->isActive;
+        } catch (\Throwable $e) {
+            $dbAvailable = false;
+        }
+
         // 去除"省"、"市"、"自治区"等后缀进行模糊匹配
         $searchName = trim($name);
         
         // 尝试精确匹配
         $province = null;
-        try {
-            $province = Province::find()
-                ->where(['name' => $searchName])
-                ->one();
-        } catch (\Throwable $e) {
-            // 如果 ActiveRecord/DB 不可用，忽略异常，走文件系统回退
+        if ($dbAvailable) {
+            try {
+                $province = Province::find()
+                    ->where(['name' => $searchName])
+                    ->one();
+            } catch (\Throwable $e) {
+                // 数据库异常则继续回退
+            }
         }
         
         // 如果精确匹配失败，尝试模糊匹配
-        if (!$province) {
+        if (!$province && $dbAvailable) {
             // 去除常见后缀
             $cleanName = preg_replace('/(省|市|自治区|维吾尔|回族|壮族)/u', '', $searchName);
             
@@ -96,7 +107,7 @@ class BattlesController extends Controller
             ];
         }
 
-        // 数据库无结果，走文件系统回退：匹配 battles 目录下的 HTML 文件
+        // 数据库无结果或不可用，走文件系统回退：匹配 battles 目录下的 HTML 文件
         $battlesDir = Yii::getAlias('@frontend/web/battles');
         $candidates = [];
         $candidates[] = $searchName . '.html';
