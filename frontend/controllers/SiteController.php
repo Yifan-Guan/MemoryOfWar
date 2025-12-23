@@ -4,7 +4,10 @@ namespace frontend\controllers;
 
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
+<<<<<<< HEAD
 use frontend\models\WordCloud;
+=======
+>>>>>>> herosearch
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
@@ -55,6 +58,7 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
+<<<<<<< HEAD
 
     /**
      * 显示抗战80周年词云
@@ -74,4 +78,6 @@ class SiteController extends Controller
             'pageDescription' => $pageDescription,
         ]);
     }
+=======
+>>>>>>> herosearch
 }

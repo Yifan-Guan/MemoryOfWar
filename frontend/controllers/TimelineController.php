@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+<<<<<<< HEAD
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -87,5 +88,14 @@ class TimelineController extends Controller
             'success' => true,
             'data' => $events
         ];
+=======
+use yii\web\Controller;
+
+class TimelineController extends Controller
+{
+    public function actionIndex()
+    {
+        return "timeline index";
+>>>>>>> herosearch
     }
 }
