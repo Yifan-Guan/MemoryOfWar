@@ -12,33 +12,29 @@ class m251222_142227_create_hero_table extends Migration
      */
     public function safeUp()
     {
-        $tableOptions = null;
-        if ($this->db->driverName === 'mysql') {
-            // https://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
-            $tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ENGINE=InnoDB';
-        }
-
-        // 1. 创建表结构
+        // 1. 创建表结构 (Create Table)
+        // 这里定义了我们项目中用到的所有字段
         $this->createTable('{{%hero}}', [
             'id' => $this->primaryKey(),
-            'name' => $this->string(50)->notNull()->comment('姓名'),
-            'life_span' => $this->string(50)->notNull()->comment('生卒年'),
-            'identity' => $this->string(100)->notNull()->comment('身份'),
-            'war_zone' => $this->string(50)->notNull()->comment('战区'),
-            'quote' => $this->string(255)->defaultValue(null)->comment('名言'),
-            'description' => $this->text()->defaultValue(null)->comment('详细事迹'),
-            'photo_path' => $this->string(100)->defaultValue(null)->comment('图片文件名'),
-        ], $tableOptions);
+            'name' => $this->string(50)->notNull()->comment('英雄姓名'),
+            'life_span' => $this->string(50)->comment('生卒年'),
+            'identity' => $this->string(100)->comment('身份/军衔'),
+            'war_zone' => $this->string(50)->comment('所属战区'),
+            'quote' => $this->string(255)->comment('名言'),
+            'description' => $this->text()->comment('详细事迹'),
+            'photo_path' => $this->string(255)->comment('照片路径'),
+        ]);
 
-        // 2. 插入数据 (已将所有图片后缀修正为 .jpg)
+        // 2. 插入初始化数据 (Seed Data)
+        // 这一步是为了让别人拿到代码运行迁移后，数据库里不至于空空如也。
+        // 我帮你放了两条最有代表性的数据进去。
         $this->batchInsert('{{%hero}}', 
-            ['id', 'name', 'life_span', 'identity', 'war_zone', 'quote', 'description', 'photo_path'], 
+            ['name', 'life_span', 'identity', 'war_zone', 'quote', 'description', 'photo_path'],
             [
                 [
-                    1, 
                     '杨靖宇', 
                     '1905-1940', 
-                    '东北抗日联军 第一路军总指挥', 
+                    '东北抗日联军第一路军总司令', 
                     '东北', 
                     '在侵略者面前，头颅不惜抛掉，鲜血可以喷洒...', 
                     '杨靖宇将军是东北抗日联军的主要创建者和领导人之一。1939年秋冬季，日军对东北抗日联军进行残酷的“大讨伐”。为了保存部队实力，杨靖宇决定将部队化整为零，自己率领警卫旅转战于蒙江一带，吸引日军主力。
@@ -283,6 +279,7 @@ class m251222_142227_create_hero_table extends Migration
      */
     public function safeDown()
     {
+        // 如果后悔了（回滚），就删除这张表
         $this->dropTable('{{%hero}}');
     }
 }
