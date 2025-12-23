@@ -8,6 +8,6 @@ class TeamController extends Controller
 {
     public function actionIndex()
     {
-        return "team index";
+        return $this->render('index');
     }
 }
