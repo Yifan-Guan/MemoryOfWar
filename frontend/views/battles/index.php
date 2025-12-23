@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     
     <div class="battles-list" style="margin: 20px 0;">
-        <p><?= Html::a('查看中国地图', ['/battles/index'], ['class' => 'btn btn-success', 'target' => '_blank']) ?></p>
+        <p><?= Html::a('查看中国地图', \yii\helpers\Url::to('@web/battles/中国地图.html'), ['class' => 'btn btn-success', 'target' => '_blank']) ?></p>
         
         <p>选择一个省份查看相关战役信息：</p>
         

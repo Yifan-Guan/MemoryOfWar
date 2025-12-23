@@ -61,18 +61,27 @@ class BattlesController extends Controller
         $searchName = trim($name);
         
         // 尝试精确匹配
-        $province = Province::find()
-            ->where(['name' => $searchName])
-            ->one();
+        $province = null;
+        try {
+            $province = Province::find()
+                ->where(['name' => $searchName])
+                ->one();
+        } catch (\Throwable $e) {
+            // 如果 ActiveRecord/DB 不可用，忽略异常，走文件系统回退
+        }
         
         // 如果精确匹配失败，尝试模糊匹配
         if (!$province) {
             // 去除常见后缀
-            $cleanName = preg_replace('/(省|市|自治区|维吾尔|回族|壮族)/', '', $searchName);
+            $cleanName = preg_replace('/(省|市|自治区|维吾尔|回族|壮族)/u', '', $searchName);
             
-            $province = Province::find()
-                ->where(['like', 'name', $cleanName])
-                ->one();
+            try {
+                $province = Province::find()
+                    ->where(['like', 'name', $cleanName])
+                    ->one();
+            } catch (\Throwable $e) {
+                // 忽略，继续回退
+            }
         }
         
         if ($province) {
@@ -85,12 +94,52 @@ class BattlesController extends Controller
                     'description' => $province->description,
                 ]
             ];
-        } else {
-            return [
-                'success' => false,
-                'message' => '未找到省份 "' . $searchName . '"，请检查输入是否正确'
-            ];
         }
+
+        // 数据库无结果，走文件系统回退：匹配 battles 目录下的 HTML 文件
+        $battlesDir = Yii::getAlias('@frontend/web/battles');
+        $candidates = [];
+        $candidates[] = $searchName . '.html';
+        $candidates[] = preg_replace('/(省|市|自治区|维吾尔|回族|壮族)/u', '', $searchName) . '.html';
+
+        foreach ($candidates as $fileName) {
+            $fullPath = $battlesDir . DIRECTORY_SEPARATOR . $fileName;
+            if (is_file($fullPath)) {
+                return [
+                    'success' => true,
+                    'data' => [
+                        'id' => null,
+                        'name' => $searchName,
+                        'url' => '/battles/' . $fileName,
+                        'description' => null,
+                    ]
+                ];
+            }
+        }
+
+        // 最后尝试在所有 HTML 文件中做包含匹配
+        $files = glob($battlesDir . DIRECTORY_SEPARATOR . '*.html');
+        $needle = preg_replace('/(省|市|自治区|维吾尔|回族|壮族)/u', '', $searchName);
+        foreach ($files as $path) {
+            $base = basename($path);
+            $nameNoExt = mb_substr($base, 0, mb_strlen($base) - 5); // 去掉 .html
+            if ($needle !== '' && mb_strpos($nameNoExt, $needle) !== false) {
+                return [
+                    'success' => true,
+                    'data' => [
+                        'id' => null,
+                        'name' => $searchName,
+                        'url' => '/battles/' . $base,
+                        'description' => null,
+                    ]
+                ];
+            }
+        }
+
+        return [
+            'success' => false,
+            'message' => '未找到省份 "' . $searchName . '"，请检查输入是否正确'
+        ];
     }
 
     /**
