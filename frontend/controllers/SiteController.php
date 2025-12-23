@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
+use frontend\models\WordCloud;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
@@ -53,5 +54,24 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    /**
+     * 显示抗战80周年词云
+     * 调用 WordCloud Model 获取数据并传递给视图
+     * 
+     * @return mixed 渲染 wordcloud 视图
+     */
+    public function actionWordcloud()
+    {
+        $words = WordCloud::getWords();
+        $pageTitle = WordCloud::getPageTitle();
+        $pageDescription = WordCloud::getPageDescription();
+        
+        return $this->render('wordcloud', [
+            'words' => $words,
+            'pageTitle' => $pageTitle,
+            'pageDescription' => $pageDescription,
+        ]);
     }
 }
